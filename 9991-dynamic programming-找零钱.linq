@@ -3,7 +3,7 @@
 void Main()
 {
 	Coins(41);
-	CoinsUniversal(41, new int[] {1, 5, 20, 25});
+	CoinsUniversal(41, new int[] { 1, 5, 20, 25 });
 }
 
 /// <summary>
@@ -18,13 +18,13 @@ int CoinsUniversal(int n, int[] faces)
 	for (int i = 1; i <= n; i++)
 	{
 		int min = int.MaxValue;
-		for (int j = 0; j < faces.Length; j++)
+		foreach (var face in faces)
 		{
-			if (i >= faces[j] && dp[i - faces[j]] < min)
-			{
-				min = dp[i - faces[j]];
-				elements[i] = faces[j];
-			}
+			if (i < face) continue;
+			var v = dp[i - face];
+			if (v < 0 || v >= min) continue;
+			min = v;
+			elements[i] = face;
 		}
 
 		dp[i] = min + 1;
