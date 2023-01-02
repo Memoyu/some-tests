@@ -20,8 +20,8 @@ public int[] TwoSum(int[] nums, int target)
 		{
 			return new int[] { dic[num], i };
 		}
-// 插入字典
-		dic.Add(nums[i], i);
+		// 插入字典(使用TryAdd，因为可能存在相同的num数值, 则会存在相同的key，导致add异常)
+		dic.TryAdd(nums[i], i);
 	}
 
 	return new int[2];
